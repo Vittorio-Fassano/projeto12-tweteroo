@@ -21,6 +21,7 @@ app.post("/sign-up", (req, res) => {
     users.push(newUser);
     res.status(201).send("OK");
 
+    console.log(newUser)
     console.log(users);
 });
 
@@ -38,8 +39,27 @@ app.post("/tweets", (req, res) => {
     tweets.push(newTweet);
     res.status(201).send("OK");
 
+    console.log(newTweet);
     console.log(tweets);
 })
+
+app.get("/tweets", (req, res) => {
+    let lastTen = [];
+
+    if(tweets.length < 10) {
+        for(let i = tweets.length-1; i >=0; i--) {
+            lastTen.push(tweets[i]);
+        }
+        res.send(lastTen)
+    } else {
+        for(let i = tweets.length-1; i >= tweets.length-10; i--) {
+            lastTen.push(tweets[i]);
+        }
+        res.send(lastTen)
+    }
+
+    console.log(lastTen);
+});
 
 
 app.listen(5000, () => {
