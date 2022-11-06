@@ -19,10 +19,8 @@ app.post("/sign-up", (req, res) => {
     };
 
     users.push(newUser);
-    res.status(201).send("OK");
 
-    console.log(newUser)
-    console.log(users);
+    res.status(201).send("OK");
 });
 
 app.post("/tweets", (req, res) => {
@@ -30,17 +28,20 @@ app.post("/tweets", (req, res) => {
 
     const user = users.find((user) => user.username === username);
 
+    console.log("user-> ",user)
+    console.log("users-> ",users)
+
     const newTweet = {
         username,
         tweet,
-        /*avatar: user.avatar,*/
+        avatar: user.avatar,
     }
 
     tweets.push(newTweet);
-    res.status(201).send("OK");
 
-    console.log(newTweet);
-    console.log(tweets);
+    console.log("tweets-> ", tweets);
+
+    res.status(201).send("OK");
 })
 
 app.get("/tweets", (req, res) => {
@@ -57,10 +58,7 @@ app.get("/tweets", (req, res) => {
         }
         res.send(lastTen)
     }
-
-    console.log(lastTen);
 });
-
 
 app.listen(5000, () => {
     console.log(chalk.bold.green('Server running on port 5000'))
