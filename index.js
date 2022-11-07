@@ -28,9 +28,6 @@ app.post("/tweets", (req, res) => {
 
     const user = users.find((user) => user.username === username);
 
-    console.log("user-> ",user)
-    console.log("users-> ",users)
-
     const newTweet = {
         username,
         tweet,
@@ -38,8 +35,6 @@ app.post("/tweets", (req, res) => {
     }
 
     tweets.push(newTweet);
-
-    console.log("tweets-> ", tweets);
 
     res.status(201).send("OK");
 })
@@ -63,19 +58,3 @@ app.get("/tweets", (req, res) => {
 app.listen(5000, () => {
     console.log(chalk.bold.green('Server running on port 5000'))
 });
-
-/*
-requests: 
-
-post sign-up
-{
-    "username": "Germán Cano",
-	"avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScGZ_s98hOOHpMEjzRx0RKxczVHKdBKZtdEs10p9ky&s"
-}
-
-post tweets
-{
-    "username": "Germán Cano",
-	"tweet": "faça o L imediatamente"
-}
-*/
